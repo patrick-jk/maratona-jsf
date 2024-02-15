@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+    <p:importEnum type="br.com.devdojo.maratonajsf.model.enums.Shift" var="Shift" allSuffix="ALL_ENUM_VALUES"/>
+
+    <h:outputLabel value="#{studentRegisterBean.student.name}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.grade1 eq studentRegisterBean.student.grade2}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.grade1 eq studentRegisterBean.student.grade2 and
+    studentRegisterBean.student.name.equals('Patrick')}"/> <br/>
+
+    <h:outputText value="Comparacao Notas:"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.grade1 lt studentRegisterBean.student.grade2}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.grade1 le studentRegisterBean.student.grade2}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.grade1 eq 0 ? 'ZERO' : 'NOT ZERO'}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.grade1 = 40}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.grade1}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.name += ' Test'}"/> <br/>
+    <!--Palavras reservadas: and, or, not, eq, ne, lt, gt, le, ge, true, false
+     null, instanceof, empty, not empty, div e mod
+     -->
+    <h:outputText value="ENUM"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.student.shift eq Shift.NIGHTLY}"/> <br/>
+
+    <!-- Arrays -->
+    <h:outputLabel value="#{studentRegisterBean.namesArr[0]} #{studentRegisterBean.namesArr[1]}
+    #{studentRegisterBean.namesArr[2]}"/> <br/>
+    <!-- ui:repeat array -->
+    <ui:repeat value="#{studentRegisterBean.namesArr}" var="name">
+        <h:outputLabel value="#{name}"/><br/>
+    </ui:repeat>
+
+    <!-- List -->
+    <h:outputLabel value="#{studentRegisterBean.namesList.get(0)} #{studentRegisterBean.namesList.get(1)}
+    #{studentRegisterBean.namesList.get(2)} #{studentRegisterBean.namesList.get(3)}"/> <br/>
+    <!-- ui:repeat List -->
+    <ui:repeat value="#{studentRegisterBean.namesList}" var="name">
+        <h:outputLabel value="#{name}"/><br/>
+    </ui:repeat>
+
+    <!--ui:repeat SET-->
+    <!--Antigamente, era necessário utilizar .toArray() para conseguir iterar sobre o Set-->
+    <h:outputLabel value="-------- SET -------"/> <br/>
+    <ui:repeat value="#{studentRegisterBean.namesSet}" var="name">
+        <h:outputLabel value="#{name}"/><br/>
+    </ui:repeat>
+
+    <!--MAP-->
+    <h:outputLabel value="-------- MAP -------"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.namesMap.get('Megadeth')}"/> <br/>
+    <h:outputLabel value="#{studentRegisterBean.namesMap}"/> <br/>
+    <!--O mesmo acontecia no Map, era preciso usar .toArray()-->
+    <ui:repeat value="#{studentRegisterBean.namesMap.entrySet()}" var="entry">
+        <h:outputLabel value="#{entry}"/><br/>
+    </ui:repeat>
+
+    <!--Executing methods on Bean-->
+    #{studentRegisterBean.execute()}
+    #{studentRegisterBean.execute('test param')}
+    #{studentRegisterBean.execute(studentRegisterBean.student.name)}
+    #{studentRegisterBean.executeReturn(studentRegisterBean.student.name)}
+    <h:form>
+        <h:commandButton value="Go to next page" action="#{studentRegisterBean.goToIndex2()}"/><br/>
+        <!--Passing values with EL to JS functions-->
+        <h:commandButton value="Release Magic" onclick="makeMagic('Hadouken')"/><br/>
+        <h:commandButton value="Alert Name" onclick="alertName('#{studentRegisterBean.student.name}')"/>
+    </h:form>
+
+    <!--Printing CSS with EL-->
+    <ui:repeat value="#{studentRegisterBean.namesList}" var="name" varStatus="status">
+        <h:outputLabel value="#{name}" style="color: #{status.index mod 2 == 0 ? 'red' : 'green'}"/><br/>
+    </ui:repeat>
+</h:body>
+<script type="text/javascript">
+    function makeMagic(magic) {
+        alert(magic);
+    }
+
+    function alertName(name) {
+        alert(name);
+    }
+</script>
+</html>
