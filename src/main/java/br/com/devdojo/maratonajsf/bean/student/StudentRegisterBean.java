@@ -17,6 +17,8 @@ public class StudentRegisterBean implements Serializable {
     private List<String> namesList = asList("Java", "Kotlin", "Swift", "Ruby");
     private Set<String> namesSet = new HashSet<>(asList("Dave Mustaine", "Tom Araya", "James Hetfield", "Joey Belladonna"));
     private Map<String, String> namesMap = new HashMap<>();
+    private boolean showGrades;
+    private boolean showLink;
 
     {
         namesMap.put("Megadeth", "Rust in Peace");
@@ -42,6 +44,38 @@ public class StudentRegisterBean implements Serializable {
 
     public String goToIndex2() {
         return "index2?faces-redirect=true";
+    }
+
+    public void viewGrades() {
+        this.showGrades = true;
+    }
+
+    public void hideGrades() {
+        this.showGrades = false;
+    }
+
+    public void viewLink() {
+        this.showLink = true;
+    }
+
+    public void hideLink() {
+        this.showLink = false;
+    }
+
+    public boolean getShowLink() {
+        return showLink;
+    }
+
+    public void setShowLink(boolean showLink) {
+        this.showLink = showLink;
+    }
+
+    public boolean isShowGrades() {
+        return showGrades;
+    }
+
+    public void setShowGrades(boolean showGrades) {
+        this.showGrades = showGrades;
     }
 
     public Map<String, String> getNamesMap() {

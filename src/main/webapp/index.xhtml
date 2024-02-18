@@ -6,7 +6,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+<h:head>
 
+</h:head>
 <h:body>
     <p:importEnum type="br.com.devdojo.maratonajsf.model.enums.Shift" var="Shift" allSuffix="ALL_ENUM_VALUES"/>
 
@@ -71,11 +73,39 @@
         <h:commandButton value="Release Magic" onclick="makeMagic('Hadouken')"/><br/>
         <h:commandButton value="Alert Name" onclick="alertName('#{studentRegisterBean.student.name}')"/>
     </h:form>
-
     <!--Printing CSS with EL-->
     <ui:repeat value="#{studentRegisterBean.namesList}" var="name" varStatus="status">
         <h:outputLabel value="#{name}" style="color: #{status.index mod 2 == 0 ? 'red' : 'green'}"/><br/>
     </ui:repeat>
+    <br/>
+    <h:form id="form">
+        <h:commandButton value="Show Grades">
+            <f:ajax render="gradesGrid" listener="${studentRegisterBean.viewGrades()}" />
+        </h:commandButton>
+        <h:commandButton value="Hide Grades">
+            <f:ajax render="gradesGrid" listener="${studentRegisterBean.hideGrades()}" />
+        </h:commandButton>
+        <br/>
+        <h:panelGrid id="gradesGrid">
+            <h:outputText value="#{studentRegisterBean.student.name}"/>
+            <h:outputText value="#{studentRegisterBean.student.surname}"/>
+            <h:outputText value="#{studentRegisterBean.student.shift}"/>
+            <h:outputText value="#{studentRegisterBean.student.grade1}" rendered="#{studentRegisterBean.showGrades}"/>
+            <h:outputText value="#{studentRegisterBean.student.grade2}" rendered="#{studentRegisterBean.showGrades}"/>
+            <h:outputText value="#{studentRegisterBean.student.grade3}" rendered="#{studentRegisterBean.showGrades}"/>
+        </h:panelGrid><br/>
+        <h:commandButton value="Show Link">
+            <f:ajax render="pgLink" listener="${studentRegisterBean.viewLink()}" />
+        </h:commandButton>
+        <h:commandButton value="Hide Link">
+            <f:ajax render="pgLink" listener="${studentRegisterBean.hideLink()}" />
+        </h:commandButton>
+        <h:panelGroup id="pgLink">
+            <ui:fragment id="fragmentLink" rendered="#{studentRegisterBean.showLink}">
+                <a href="https://www.google.com" target="_blank">www.google.com</a>
+            </ui:fragment>
+        </h:panelGroup>
+    </h:form>
 </h:body>
 <script type="text/javascript">
     function makeMagic(magic) {
