@@ -1,6 +1,8 @@
 package br.com.devdojo.maratonajsf.bean.student;
 
 import br.com.devdojo.maratonajsf.model.Student;
+import jakarta.el.LambdaExpression;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
@@ -60,6 +62,11 @@ public class StudentRegisterBean implements Serializable {
 
     public void hideLink() {
         this.showLink = false;
+    }
+
+    public void calculateCube(LambdaExpression le, long value) {
+        long result = (int) le.invoke(FacesContext.getCurrentInstance().getELContext(), value);
+        System.out.println(result);
     }
 
     public boolean getShowLink() {

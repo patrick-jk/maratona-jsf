@@ -5,11 +5,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 </h:head>
 <h:body>
+    <c:set var="numberList" value="#{[1,2,3,4,5,6,7,8,9,10]}"/>
     <p:importEnum type="br.com.devdojo.maratonajsf.model.enums.Shift" var="Shift" allSuffix="ALL_ENUM_VALUES"/>
 
     <h:outputLabel value="#{studentRegisterBean.student.name}"/> <br/>
@@ -80,10 +82,10 @@
     <br/>
     <h:form id="form">
         <h:commandButton value="Show Grades">
-            <f:ajax render="gradesGrid" listener="${studentRegisterBean.viewGrades()}" />
+            <f:ajax render="gradesGrid" listener="${studentRegisterBean.viewGrades()}"/>
         </h:commandButton>
         <h:commandButton value="Hide Grades">
-            <f:ajax render="gradesGrid" listener="${studentRegisterBean.hideGrades()}" />
+            <f:ajax render="gradesGrid" listener="${studentRegisterBean.hideGrades()}"/>
         </h:commandButton>
         <br/>
         <h:panelGrid id="gradesGrid">
@@ -95,10 +97,10 @@
             <h:outputText value="#{studentRegisterBean.student.grade3}" rendered="#{studentRegisterBean.showGrades}"/>
         </h:panelGrid><br/>
         <h:commandButton value="Show Link">
-            <f:ajax render="pgLink" listener="${studentRegisterBean.viewLink()}" />
+            <f:ajax render="pgLink" listener="${studentRegisterBean.viewLink()}"/>
         </h:commandButton>
         <h:commandButton value="Hide Link">
-            <f:ajax render="pgLink" listener="${studentRegisterBean.hideLink()}" />
+            <f:ajax render="pgLink" listener="${studentRegisterBean.hideLink()}"/>
         </h:commandButton>
         <h:panelGroup id="pgLink">
             <ui:fragment id="fragmentLink" rendered="#{studentRegisterBean.showLink}">
@@ -106,6 +108,41 @@
             </ui:fragment>
         </h:panelGroup>
     </h:form>
+    <!--Lambdas-->
+    #{(sum -> sum + num) (10)}<br/>
+    #{((v1, v2, v3)->v1*v2*v3) (1, 5, 10)}<br/>
+    #{(x->x*x*x) (2)}<br/>
+    #{cube=(x->x*x*x); cube(10)}<br/>
+    <h:form>
+        <h:commandButton value="Calculate Cube" actionListener="#{studentRegisterBean.calculateCube((x->x*x*x), 10)}"/>
+    </h:form>
+    <!--Lists-->
+    <ui:repeat value="#{['DevDojo','e','foda']}" var="fodeza">
+        #{fodeza}
+    </ui:repeat>
+    <br/>
+    <!--Set-->
+    <ui:repeat value="#{{'DevDojo','É','Foda','Foda'}}" var="fodeza">
+        #{fodeza}
+    </ui:repeat>
+    <br/>
+    <!--Map-->
+    <ui:repeat value="#{{'Melhor Lugar':'DevDojo','Melhor curso':'Maratonas'}}" var="fodezaMap">
+        #{fodezaMap}
+        <!--JSF Does not find entrySet-->
+        <!--<ui:repeat value="#{fodezaMap.entrySet().toArray()}" var="entry">-->
+        <!--#{entry.key} - #{entry.value}-->
+        <!--</ui:repeat>-->
+    </ui:repeat>
+    <br/>
+    <ui:repeat value="#{numberList.stream().filter(v -> v > 5).toList()}" var="result">
+        #{result}
+    </ui:repeat>
+    <br/>
+    #{numberList.stream().average().get()}<br/>
+    #{numberList.stream().sum()}<br/>
+    #{numberList.stream().filter(v -> v > 5).sum()}
+
 </h:body>
 <script type="text/javascript">
     function makeMagic(magic) {
