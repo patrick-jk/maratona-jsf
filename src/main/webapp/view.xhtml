@@ -10,14 +10,20 @@
 
 </h:head>
 <h:body>
-   <h:form>
-      <h:outputText value="#{testSessionBean.selectedCharacter}"/><br/>
-      <h:commandButton actionListener="#{testSessionBean.selectCharacter()}" value="Select Character"/>
-      <h:commandButton actionListener="#{testSessionBean.selectCharacter()}" value="Select Character Forward"
-                       action="session2"/>
-      <h:commandButton actionListener="#{testSessionBean.selectCharacter()}" value="Select Character Redirect"
-                       action="session2?faces-redirect=true"/>
-      <h:commandButton action="#{testSessionBean.logout()}" value="Logout" />
-   </h:form>
+    <h:form>
+        <h:outputText value="#{testApplicationBean.categoryList}"/><br/>
+        <h:outputText value="#{testApplicationBean.dependentBean.categoriesList}"/><br/>
+        <!--<h:outputText value="Logged Student: #{testApplicationBean.sessionBean.student.name}"/><br/>-->
+        <h:outputText value="Logged Student: #{testSessionBean.student.name}"/><br/>
+
+        <h:outputText value="#{testViewBean.selectedCharacter}"/><br/>
+        <h:outputText value="Dependent: #{testViewBean.dependentBean.selectedCharacter}"/><br/>
+
+        <h:commandButton actionListener="#{testViewBean.selectCharacter()}" value="Select Character"/>
+        <h:commandButton actionListener="#{testViewBean.selectCharacter()}" value="Select Character Forward"
+                         action="view2"/>
+        <h:commandButton actionListener="#{testViewBean.selectCharacter()}" value="Select Character Redirect"
+                         action="view2?faces-redirect=true"/>
+    </h:form>
 </h:body>
 </html>

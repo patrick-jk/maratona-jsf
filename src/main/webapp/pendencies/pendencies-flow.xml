@@ -3,24 +3,20 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                                   https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd">
-    <flow-definition id="registration">
-        <start-node>registrationStart</start-node>
-        <view id="registrationStart">
-            <vdl-document>/registration/registration1.xhtml</vdl-document>
-        </view>
-        <switch id="registrationPage2">
-            <case>
-                <if>#{not empty testFlowBean.name and not empty testFlowBean.surname}</if>
-                <from-outcome>registration2</from-outcome>
-            </case>
-            <default-outcome>registrationStart</default-outcome>
-        </switch>
+    <flow-definition id="pendencies">
+        <flow-return id="proceedToRegistration3">
+            <from-outcome>/registration/registration3</from-outcome>
+        </flow-return>
         <flow-return id="exitToStart">
-            <from-outcome>/start_flow.xhtml</from-outcome>
+            <from-outcome>registrationStart</from-outcome>
         </flow-return>
-        <flow-return id="exitToIndex">
-            <from-outcome>/index.xhtml</from-outcome>
-        </flow-return>
-        <finalizer>#{testFlowBean.save()}</finalizer>
+        <inbound-parameter>
+            <name>userName</name>
+            <value>#{testFlowNestedBean.userName}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>userSurname</name>
+            <value>#{testFlowNestedBean.userSurname}</value>
+        </inbound-parameter>
     </flow-definition>
 </faces-config>

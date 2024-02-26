@@ -9,14 +9,15 @@
 
 </h:head>
 <h:body>
+    <h:messages/>
     <h:form>
         <h2>First register page FlowScoped</h2>
         <h:panelGrid columns="2">
             <h:outputLabel value="Name"/>
-            <h:inputText value="#{testFlowBean.name}"/>
+            <h:inputText value="#{testFlowBean.name}" required="true" requiredMessage="Name is mandatory"/>
             <h:outputLabel value="Surname"/>
             <h:inputText value="#{testFlowBean.surname}"/>
-            <h:commandButton value="Next" action="registration2?faces-redirect=true"/>
+            <h:commandButton value="Next" action="registrationPage2"/>
         </h:panelGrid>
     </h:form>
 </h:body>

@@ -4,8 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+<h:head>
+
+</h:head>
+<h:body>
+    <h:form>
+        <p:messages autoUpdate="true"/>
+        <h2>Checking user data</h2>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="#{testFlowNestedBean.userName}"/>
+            <h:outputLabel value="#{testFlowNestedBean.userSurname}"/>
+            <h:commandButton value="Validate User" action="#{testFlowNestedBean.validateUser()}"/>
+            <h:commandButton value="Back to start" action="exitToStart"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
 </html>

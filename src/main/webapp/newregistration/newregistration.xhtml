@@ -9,14 +9,15 @@
 
 </h:head>
 <h:body>
+    <h:messages/>
     <h:form>
-        <h2>Second register page FlowScoped</h2>
+        <h2>First register page FlowScoped</h2>
         <h:panelGrid columns="2">
-            <h:outputLabel value="Address"/>
-            <h:inputText value="#{testFlowBean.address}"/>
-            <h:commandButton value="Back" action="registration1?faces-redirect=true"/>
-            <!--<h:commandButton value="Next" action="registration3?faces-redirect=true"/>-->
-            <h:commandButton value="Check Pendencies" action="callPendencies"/>
+            <h:outputLabel value="Name"/>
+            <h:inputText value="#{testFlowBuilderBean.name}" required="true" requiredMessage="Name is mandatory"/>
+            <h:outputLabel value="Surname"/>
+            <h:inputText value="#{testFlowBuilderBean.surname}"/>
+            <h:commandButton value="Next" action="newRegistrationPage2"/>
         </h:panelGrid>
     </h:form>
 </h:body>

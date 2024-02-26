@@ -11,8 +11,8 @@ import java.util.*;
 
 import static java.util.Arrays.asList;
 
-@ViewScoped
 @Named
+@ViewScoped
 public class StudentRegisterBean implements Serializable {
     private Student student = new Student();
     private String[] namesArr = {"DevDojo", "é", "foda"};
@@ -65,7 +65,7 @@ public class StudentRegisterBean implements Serializable {
     }
 
     public void calculateCube(LambdaExpression le, long value) {
-        long result = (int) le.invoke(FacesContext.getCurrentInstance().getELContext(), value);
+        long result = (long) le.invoke(FacesContext.getCurrentInstance().getELContext(), value);
         System.out.println(result);
     }
 

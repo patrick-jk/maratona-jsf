@@ -9,14 +9,25 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>view.xhtml</welcome-file>
     </welcome-file-list>
     <servlet-mapping>
         <servlet-name>faces</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-        <context-param>
+    <context-param>
         <param-name>jakarta.faces.FACELETS_SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
     </context-param>
+    <context-param>
+        <param-name>jakarta.faces.CLIENT_WINDOW_MODE</param-name>
+        <param-value>url</param-value>
+    </context-param>
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+    <!--<error-page>-->
+    <!--&lt;!&ndash;<exception-type>org.jboss.weld.context.NonexistentConversationException</exception-type>&ndash;&gt;-->
+    <!--<location>/error.xhtml</location>-->
+    <!--</error-page>-->
 </web-app>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="3.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                                  https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd">
+    <flow-definition id="registration">
+        <!--Use it when you want an entry point different from convention-->
+        <start-node>registrationStart</start-node>
+        <view id="registrationStart">
+            <vdl-document>/registration/registration1.xhtml</vdl-document>
+        </view>
+        <!--Switch to check if user can proceed to next page-->
+        <switch id="registrationPage2">
+            <case>
+                <if>#{not empty testFlowBean.name and not empty testFlowBean.surname}</if>
+                <from-outcome>registration2</from-outcome>
+            </case>
+            <default-outcome>registrationStart</default-outcome>
+        </switch>
+        <!--Return pages-->
+        <flow-return id="exitToStart">
+            <from-outcome>/start_flow.xhtml</from-outcome>
+        </flow-return>
+        <flow-return id="exitToIndex">
+            <from-outcome>/index.xhtml</from-outcome>
+        </flow-return>
+        <flow-call id="callPendencies">
+            <flow-reference>
+                <flow-id>pendencies</flow-id>
+            </flow-reference>
+            <outbound-parameter>
+                <name>userName</name>
+                <value>#{testFlowBean.name}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>userSurname</name>
+                <value>#{testFlowBean.surname}</value>
+            </outbound-parameter>
+        </flow-call>
+        <!--Method that will run independent of flow-return-->
+        <finalizer>#{testFlowBean.save()}</finalizer>
+    </flow-definition>
+</faces-config>

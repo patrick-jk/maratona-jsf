@@ -1,15 +1,13 @@
-package br.com.devdojo.maratonajsf.bean.flow;
+package br.com.devdojo.maratonajsf.bean.flowbuilder;
 
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
 import jakarta.faces.flow.FlowScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 
 @Named
-@FlowScoped(value = "pendencies")
-public class TestFlowNestedBean implements Serializable {
+@FlowScoped(value = "newpendencies")
+public class TestFlowBuilderNestedBean implements Serializable {
     private String userName;
     private String userSurname;
 
@@ -18,13 +16,13 @@ public class TestFlowNestedBean implements Serializable {
         System.out.println("Querying data on SPC");
         System.out.println("Requesting God's permission");
         System.out.println("Sacrificing a goat");
-        if (true) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User has not passed in pendencies",
-                    "Some useful detail"));
-            return null;
-        }
-        return "proceedToRegistration3";
+//        if (true) {
+//            FacesContext context = FacesContext.getCurrentInstance();
+//            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User has not passed in pendencies",
+//                    "Some useful detail"));
+//            return null;
+//        }
+        return "proceedToNewRegistration3";
     }
 
     public String getUserName() {

@@ -1,4 +1,4 @@
-package br.com.devdojo.maratonajsf.bean.flow;
+package br.com.devdojo.maratonajsf.bean.flowbuilder;
 
 import jakarta.faces.flow.FlowScoped;
 import jakarta.inject.Named;
@@ -6,8 +6,8 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 
 @Named
-@FlowScoped(value = "registration")
-public class TestFlowBean implements Serializable {
+@FlowScoped(value = "newregistration")
+public class TestFlowBuilderBean implements Serializable {
     private String name;
     private String surname;
     private String address;

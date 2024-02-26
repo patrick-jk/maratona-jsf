@@ -13,12 +13,12 @@
         <h2>Third register page FlowScoped</h2>
         <h:panelGrid columns="2">
             <h:outputLabel value="name"/>
-            <h:outputLabel value="#{testFlowBean.name}"/>
+            <h:outputLabel value="#{testFlowBuilderBean.name}"/>
             <h:outputLabel value="surname"/>
-            <h:outputLabel value="#{testFlowBean.surname}"/>
+            <h:outputLabel value="#{testFlowBuilderBean.surname}"/>
             <h:outputLabel value="Address" />
-            <h:outputLabel value="#{testFlowBean.address}" />
-            <h:commandButton value="Back" action="registration2?faces-redirect=true"/>
+            <h:outputLabel value="#{testFlowBuilderBean.address}" />
+            <h:commandButton value="Back" action="newregistration2?faces-redirect=true"/>
             <h:commandButton value="Save" action="exitToStart"/>
         </h:panelGrid>
     </h:form>
