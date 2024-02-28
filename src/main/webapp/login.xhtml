@@ -4,8 +4,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+
+<h:head>
+
+</h:head>
+<h:body>
+    <h:form>
+        <p:messages autoUpdate="true"/>
+        <h:panelGrid columns="1">
+            <h:outputLabel value="Name"/>
+            <h:inputText value="#{loginBean.name}" required="true" requiredMessage="Please, insert the name"/>
+            <h:outputLabel value="Password"/>
+            <h:inputSecret value="#{loginBean.password}" required="true" requiredMessage="Please, insert the password"/>
+            <h:commandButton value="Login" action="#{loginBean.login()}"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
 </html>

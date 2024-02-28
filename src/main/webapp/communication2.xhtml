@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
@@ -12,8 +11,10 @@
 </h:head>
 <h:body>
     <h:form>
-        <h1>User logged in: #{loginBean.student.name}</h1>
-        <h:commandButton value="Logout" action="#{loginBean.logout()}"/>
+        <h:panelGrid columns="1">
+            <h:inputText value="#{communicationTest2Bean.name}"/>
+            <h:inputText value="#{communicationTest2Bean.surname}"/>
+        </h:panelGrid>
     </h:form>
 </h:body>
 </html>
