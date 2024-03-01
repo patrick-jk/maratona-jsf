@@ -13,7 +13,8 @@
     <h:form>
         <h:panelGrid columns="1">
             <h:outputText value="#{facesContext.externalContext.getInitParameter('images.location')}"/>
-            <h:commandButton value="Print global variable" actionListener="#{communicationTest1Bean.printAttributes()}"/>
+            <h:commandButton value="Print global variable"
+                             actionListener="#{communicationTest1Bean.printAttributes()}"/>
         </h:panelGrid>
     </h:form>
     <h:form>
@@ -25,6 +26,10 @@
                 <f:param name="surname" value="Ninjas"/>
             </h:button>
             <h:link value="Go to communication 2" outcome="communication2">
+                <f:param name="name" value="DevDojo"/>
+                <f:param name="surname" value="Ninjas"/>
+            </h:link>
+            <h:link value="Go to communication 3" outcome="communication3">
                 <f:param name="name" value="DevDojo"/>
                 <f:param name="surname" value="Ninjas"/>
             </h:link>
