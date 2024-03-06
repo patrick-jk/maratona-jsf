@@ -14,7 +14,10 @@
 <f:metadata>
     <f:viewParam name="name" value="#{communicationTest3Bean.name}"/>
     <f:viewParam name="surname" value="#{communicationTest3Bean.surname}"/>
-    <f:event type="preRenderView" listener="#{communicationTest3Bean.init()}"/>
+    <f:viewParam name="date" value="#{communicationTest3Bean.date}">
+        <f:convertDateTime pattern="dd-MM-yyyy"/>
+    </f:viewParam>
+    <!--<f:event type="preRenderView" listener="#{communicationTest3Bean.init()}"/>-->
     <f:viewAction action="#{communicationTest3Bean.init()}"/>
 </f:metadata>
 <h:body>
@@ -25,6 +28,7 @@
                 <f:ajax event="blur"/> <!--Blur is not working-->
             </h:inputText>
             <h:inputText value="#{communicationTest3Bean.surname}"/>
+            <h:outputLabel value="#{communicationTest3Bean.date}"/>
             <h:commandButton value="Result" action="#{communicationTest3Bean.save()}"/>
         </h:panelGrid>
     </o:form>
