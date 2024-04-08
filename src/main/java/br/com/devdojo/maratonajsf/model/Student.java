@@ -8,7 +8,7 @@ public class Student {
     private double grade1 = 20;
     private double grade2;
     private double grade3 = 10;
-    private Shift shift = Shift.MORNING;
+    private Shift shift = Shift.MOURNING;
 
     public Shift getShift() {
         return shift;
